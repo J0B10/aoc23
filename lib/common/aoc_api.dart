@@ -9,8 +9,8 @@ set session(String session) => _session = session;
 
 /// Creates the URI for fetching the puzzle input for the given [day] from the Advent of Code website.
 ///
-/// Uri is: `https://adventofcode.com/2022/day/${DAY}/input`
-Uri inputUri(int day) => Uri.https('adventofcode.com', '2022/day/$day/input');
+/// Uri is: `https://adventofcode.com/2023/day/${DAY}/input`
+Uri inputUri(int day) => Uri.https('adventofcode.com', '2023/day/$day/input');
 
 /// Fetches the puzzle input for the given [day] from the Advent of Code website.
 ///
