@@ -1,0 +1,63 @@
+import 'package:aoc23/common/puzzle_input.dart';
+
+enum Number {
+  one(1),
+  two(2),
+  three(3),
+  four(4),
+  five(5),
+  six(6),
+  seven(7),
+  eight(8),
+  nine(9);
+
+  const Number(this.value);
+
+  factory Number.of(String string) {
+    var value = int.tryParse(string);
+    if (value != null) {
+      assert(value > 0 && value < 10);
+      return Number.values.where((element) => element.value == value).first;
+    }
+    return Number.values.where((element) => element.name == string).first;
+  }
+
+  final int value;
+}
+
+extension RegExpUtils on RegExp {
+  Iterable<RegExpMatch> overlappingMatches(String input) {
+    void find(String input, int start, List<RegExpMatch> results) {
+      if (start >= input.length) return;
+      var match = firstMatch(input.substring(start));
+      if (match == null) return;
+      results.add(match);
+      find(input, start + match.start + 1, results);
+    }
+    var list = <RegExpMatch>[];
+    find(input, 0, list);
+    return list;
+  }
+}
+
+int day01A(String puzzleInput) {
+  var sum = 0;
+  for (var line in puzzleInput.lines) {
+    var ints = line.split('').map(int.tryParse).whereType<int>().toList();
+    sum += ints.first * 10 + ints.last;
+  }
+  return sum;
+}
+
+int day01B(String puzzleInput) {
+  var regex = RegExp(r'(\d|one|two|three|four|five|six|seven|eight|nine)');
+  var sum = 0;
+  for (var line in puzzleInput.lines) {
+    var ints = regex
+        .overlappingMatches(line)
+        .map((match) => Number.of(match.group(0)!).value)
+        .toList();
+    sum += ints.first * 10 + ints.last;
+  }
+  return sum;
+}
