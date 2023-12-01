@@ -7,30 +7,6 @@ import 'dart:math' as math;
 /// The solution of the puzzle is returned as an [int].
 typedef Puzzle = FutureOr<dynamic> Function(String puzzleInput);
 
-/// Extension on [Pattern] to check if it matches a string exactly.
-///
-/// Only provides a single extension method [exactMatch].
-extension ExactMatch on Pattern {
-
-  /// Checks if this [Pattern] matches the [input] exactly.
-  ///
-  /// If this [Pattern] is a [String], returns if it is equal to the [input].
-  /// If this [Pattern] is a [RegExp], returns if expression matches the entire [input].
-  /// If type is neither [String] nor [RegExp], throws an [UnimplementedError].
-  bool exactMatch(String input) {
-    switch (this) {
-      case String s:
-        return s == input;
-      case RegExp regExp:
-        return regExp
-            .allMatches(input)
-            .any((match) => match.group(0)?.length == input.length);
-      default:
-        throw UnimplementedError('not implemented for $runtimeType');
-    }
-  }
-}
-
 /// Extension on [String] that provides utility methods for easier parsing of
 /// aoc puzzle inputs.
 extension PuzzleInput on String {

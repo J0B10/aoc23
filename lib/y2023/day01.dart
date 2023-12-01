@@ -1,3 +1,4 @@
+import 'package:aoc23/common/pattern_utils.dart';
 import 'package:aoc23/common/puzzle_input.dart';
 
 enum Number {
@@ -23,21 +24,6 @@ enum Number {
   }
 
   final int value;
-}
-
-extension RegExpUtils on RegExp {
-  Iterable<RegExpMatch> overlappingMatches(String input) {
-    void find(String input, int start, List<RegExpMatch> results) {
-      if (start >= input.length) return;
-      var match = firstMatch(input.substring(start));
-      if (match == null) return;
-      results.add(match);
-      find(input, start + match.start + 1, results);
-    }
-    var list = <RegExpMatch>[];
-    find(input, 0, list);
-    return list;
-  }
 }
 
 int day01A(String puzzleInput) {
