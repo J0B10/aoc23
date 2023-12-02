@@ -1,8 +1,10 @@
 import 'package:aoc23/aoc23.dart';
+import 'package:aoc23/y2023/day01.dart';
+import 'package:aoc23/y2023/day02.dart';
 import 'package:test/test.dart';
 
 void main() {
-  /*test('select day 01 puzzle', () {
+  test('select day 01 puzzle', () {
     expect(day01A, selectPuzzle(1, 'A'));
   });
   test('select day 02 puzzle b', () {
@@ -10,5 +12,5 @@ void main() {
   });
   test('select invalid puzzle', () {
     expect(null, selectPuzzle(28, 'A'));
-  });*/
+  });
 }
