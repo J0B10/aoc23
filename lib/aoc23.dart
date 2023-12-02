@@ -5,12 +5,15 @@ import 'package:ansicolor/ansicolor.dart';
 import 'package:aoc23/common/aoc_api.dart' as aoc_api;
 import 'package:aoc23/common/puzzle_input.dart';
 import 'package:aoc23/y2023/day01.dart';
+import 'package:aoc23/y2023/day02.dart';
 import 'package:args/args.dart';
 
 /// All puzzles supported by the cli. **Add new puzzles here!**
 const Set<Puzzle> puzzles = {
   day01A,
   day01B,
+  day02A,
+  day02B,
 };
 
 /// Argument used to specify the day of the puzzle to run.

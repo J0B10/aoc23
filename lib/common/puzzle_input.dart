@@ -54,6 +54,9 @@ extension NumericPuzzle<T extends num> on Iterable<T> {
 
   /// Calculate the sum of all values in this [Iterable].
   T get sum => _reduceAndCast((a, b) => a + b);
+
+  /// Multiply all values of this [Iterable] and return the result.
+  T get multiplied => _reduceAndCast((a, b) => a * b);
 }
 
 /// A range of numbers. Can be iterated over.
