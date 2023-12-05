@@ -1,4 +1,5 @@
 import 'dart:isolate';
+import 'dart:math' as math;
 
 import 'package:aoc23/common/puzzle_input.dart';
 
@@ -62,6 +63,19 @@ extension CallAll on List<Conversion> {
   }
 }
 
+extension SplitRange on Range {
+  List<Range> split(int steps) {
+    if (length < steps) return [this];
+    return [
+      for (var i = 0; i < length / steps; i++)
+        Range(
+          from: from + steps * i,
+          to: math.min(from + steps * (i + 1) - 1, to),
+        ),
+    ];
+  }
+}
+
 int day05A(String puzzleInput) {
   var seeds = puzzleInput.lines.first
       .split(RegExp(r'\s+'))
@@ -86,11 +100,8 @@ Future<int> day05B(String puzzleInput) async {
     seedRanges.add(Range.count(seedValues[i + 1], start: seedValues[i]));
   }
   var results = await Future.wait([
-    for (var range in seedRanges)
-      Isolate.run(() {
-        var results = range.map((seed) => maps(seed)).toList();
-        return results.min;
-      }),
+    for (var range in seedRanges.expand((range) => range.split(50000000)))
+      Isolate.run(() => range.map((seed) => maps(seed)).min),
   ]);
   return results.min;
 }

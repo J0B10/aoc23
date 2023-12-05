@@ -95,6 +95,9 @@ class Range extends Iterable<int> {
 
   @override
   String toString() => '$from to $to';
+
+  @override
+  int get length => (to - from).abs() + 1;
 }
 
 /// Iterator for [Range].
