@@ -8,6 +8,7 @@ import 'package:aoc23/y2023/day01.dart';
 import 'package:aoc23/y2023/day02.dart';
 import 'package:aoc23/y2023/day03.dart';
 import 'package:aoc23/y2023/day04.dart';
+import 'package:aoc23/y2023/day05.dart';
 import 'package:args/args.dart';
 
 /// All puzzles supported by the cli. **Add new puzzles here!**
@@ -20,6 +21,8 @@ const Set<Puzzle> puzzles = {
   day03B,
   day04A,
   day04B,
+  day05A,
+  day05B,
 };
 
 /// Argument used to specify the day of the puzzle to run.
