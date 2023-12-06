@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aoc23/common/puzzle_input.dart';
 
 class BoatRace {
@@ -8,10 +10,15 @@ class BoatRace {
 
   int distance(int chargeTime) => (time - chargeTime) * chargeTime;
 
-  List<int> get winningChargeTimes => [
-        for (var charge = 0; charge < time; charge++)
-          if (distance(charge) > recordDistance) distance(charge),
-      ];
+  /// Calculate the allowed range of charge times for the boat to win.
+  ///
+  /// The range is calculated by solving the following equation for `chargeTime`:
+  /// `recordDistance < (time - chargeTime) * chargeTime`
+  Range get winningChargeTimes {
+    var min = (time - sqrt(time * time - 4 * recordDistance)) / 2;
+    var max = (time + sqrt(time * time - 4 * recordDistance)) / 2;
+    return Range(from: min.ceil(), to: max.floor());
+  }
 }
 
 List<BoatRace> parseA(String input) {
